@@ -1,7 +1,15 @@
 from django.contrib import admin
+
 from .models import Category, Comment, Tag, Post, Message
 from tinymce.widgets import TinyMCE
 from tinymce import models as tinymce_models
+
+from .models import Category, Comment, Tag, Post
+from django_summernote.admin import SummernoteModelAdmin
+
+# Apply summernote to all TextField in model.
+from django_summernote.admin import SummernoteModelAdmin
+from .models import Post
 
 
 # Register your models here.
@@ -32,3 +40,5 @@ admin.site.register(Post, PostAdmin)
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
     list_display = ('name', 'email')
+
+

@@ -1,8 +1,11 @@
+
 import bleach
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
+
 from tinymce import models as tinymce_models
 # Create your models here.
 
@@ -33,7 +36,11 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts')
     tags = models.ManyToManyField(Tag, related_name='posts')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+
     body = tinymce_models.HTMLField()
+
+
+
     publish = models.DateTimeField(default=timezone.now)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -47,6 +54,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
 
     def save(self, *args, **kwargs):
         self.body = bleach.clean(self.body, tags=[], strip=True)
@@ -68,6 +76,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment by {self.name} on {self.post.title}'
+
 
 
 class Message(models.Model):

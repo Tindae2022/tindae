@@ -24,9 +24,13 @@ SECRET_KEY = 'django-insecure-z2@4_dh1$9c7s9k%*jr5c1tkx5yi9(m0@@ok5j1nu&84c24k(3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 # ALLOWED_HOSTS = ['localhost', '2832-197-215-23-121.ngrok-free.app']
 # ALLOWED_HOSTS = ['localhost', '2832-197-215-23-121.ngrok-free.app', '127.0.0.1']
 ALLOWED_HOSTS = ['*']
+
+# ALLOWED_HOSTS = []
+
 
 # Application definition
 
@@ -39,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
     'django_summernote',
+
     'tinymce',
+
 ]
 
 MIDDLEWARE = [
@@ -125,7 +131,10 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
+
 DJANGO_SETTINGS_MODULE = 'tests.settings'
 
 
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

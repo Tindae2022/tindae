@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from .models import Post, Comment, Tag, Category, Message
@@ -6,6 +7,13 @@ from django.db.models import Count, Q
 from .forms import CommentForm, MessageForm
 from django.urls import reverse_lazy
 from django.http import HttpResponse
+
+from django.shortcuts import render
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from .models import Post, Comment, Tag, Category
+from django.db.models import Count
+from .forms import CommentForm
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -26,6 +34,7 @@ class IndexTemplateView(ListView):
         context['total_comment'] = Comment.objects.filter(active=True).count()
 
         return context
+
 
 
 class CategoryTagListView(ListView):
@@ -70,6 +79,14 @@ class FilteredPostListView(ListView):
         context['selected_tag'] = str(self.kwargs.get('tag_id')) if 'tag_id' in self.kwargs else None
         return context
 
+class PostListView(ListView):
+    model = Post
+    context_object_name = 'all_posts'
+    template_name = 'blog/index.html'
+
+    def get_queryset(self):
+        return Post.objects.filter(status='Published').all()
+
 
 class PostDetailView(DetailView):
     model = Post
@@ -99,6 +116,23 @@ class CategoryDetailView(DetailView):
         return context
 
 
+class CategoryPostListView(ListView):
+    model = Post
+    template_name = 'blog/index.html'  # Create this template
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        category_id = self.kwargs.get('category_id')
+        return Post.objects.filter(category_id=category_id, status='Published')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.annotate(num_posts=Count('posts')).order_by('-num_posts')
+        context['selected_category'] = Category.objects.get(id=self.kwargs.get('category_id'))
+        return context
+
+
+
 class CommentCreateView(CreateView):
     model = Comment
     form_class = CommentForm
@@ -116,6 +150,7 @@ class CommentCreateView(CreateView):
         return reverse_lazy('post_details', kwargs={'pk': self.kwargs['post_id']})
 
 
+
 class MessageCreateView(CreateView):
     model = Message
     form_class = MessageForm
@@ -130,3 +165,4 @@ class MessageCreateView(CreateView):
     def form_invalid(self, form):
         # Re-render the form with errors if form is invalid
         return self.render_to_response(self.get_context_data(form=form))
+
