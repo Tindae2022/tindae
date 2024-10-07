@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
-<<<<<<< HEAD
 
 {% block hero %}
-{% endblock hero %}
+{% endblock  %}
 
-{% block content %}
-    {% block nav %}
+{% block nav %}
+    
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="{% url 'index' %}">Alusine T. <span style="color: #ffc107;"> Lavalie</span></a>
@@ -28,7 +27,7 @@
         </div>
     </nav>
     {% endblock %}
-
+{% block content %}
     <section class="ftco-section" id="blog-section">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-5">
@@ -107,81 +106,16 @@
             </div>
         </div>
     </section>
+
+
+
+
 {% endblock %}
-=======
-{% block hero %}
-{% endblock hero %}
-{% block content %}
-    {% block nav %}
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="{% url 'index' %}">Alusine T. <span style="color: #ffc107;"> Lavalie</span> </a>
-	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="{% url 'index' %}" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="{% url 'index' %}" class="nav-link"><span>About</span></a></li>
-	          <li class="nav-item"><a href="{% url 'index' %}" class="nav-link"><span>Resume</span></a></li>
-	          <li class="nav-item"><a href="{% url 'index' %}" class="nav-link"><span>Services</span></a></li>
-	          <li class="nav-item"><a href="{% url 'index' %}" class="nav-link"><span>Skills</span></a></li>
-	          <li class="nav-item"><a href="{% url 'index' %}" class="nav-link"><span>Projects</span></a></li>
-	          <li class="nav-item"><a href="{% url 'all_post' %}" class="nav-link"><span>My Blog</span></a></li>
-	          <li class="nav-item"><a href="{% url 'index' %}" class="nav-link"><span>Contact</span></a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
-        {% endblock %}
     
-    <section class="ftco-section" id="blog-section">
-    <div class="container">
-       <div class="row justify-content-center mb-5 pb-5">
-    <div class="col-md-7 heading-section text-center ftco-animate">
-        <h1 class="big big-2">Blog</h1>
-        <h2 class="mb-4">Our Blog</h2>
-        <p>Dive into the world of technology, gain insights from life coaches, and fuel your motivation with inspirational content, all crafted to empower and elevate your journey.</p>
-        <a href="{% url 'all_post' %}" class="btn btn-primary mt-4">View All Posts</a>
-    </div>
-</div>
-
-        {% if all_posts %}
-        <div class="row d-flex">
-            {% for post in all_posts %}
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry justify-content-end">
-                   
-                    <a href="{% url 'post_details' post.pk %}" class="block-20" 
-   {% if post.image %}
-   style="background-image: url({{ post.image.url }});"
-   {% endif %}>
-</a>
-         <div class="text mt-3 float-right d-block">
-                        <div class="d-flex align-items-center mb-3 meta">
-                            <p class="mb-0">
-                                <span class="mr-2">{{ post.publish|date:"F j, Y" }}</span>
-                                <a href="#" class="mr-2">{{ post.author }}</a>
-                                <a href="#" class="meta-chat"><span class="icon-chat"></span> {{ post.comments.count }}</a>
-                            </p>
-                        </div>
-                        <h3 class="heading"><a href="{% url 'post_details' post.pk %}">{{ post.title }}</a></h3>
-                        <p>{{ post.insight }}</p>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <p>No posts found!</p>
-        {% endif %}
-    </div>
-</section>
 
 
     
     
     
-{% endblock %}
->>>>>>> d8cc98ec6a089ff7c656030e8cd2753b5dae9fab
+
+

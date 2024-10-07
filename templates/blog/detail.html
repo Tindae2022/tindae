@@ -5,6 +5,8 @@
 {% endblock %}
 	{% block hero %}
 {% endblock %}
+
+
 {% block content %}
     
 	 <!-- Hero Section -->
@@ -92,7 +94,7 @@
       <div class="col-lg-4 sidebar ftco-animate">
         <!-- Categories -->
         <div class="sidebar-box">
-<<<<<<< HEAD
+
     <h3 class="heading-sidebar">All Categories</h3>
     <ul class="categories">
         <li>
@@ -107,26 +109,9 @@
                                     </a>
                                 </li>
                             {% endfor %}
-=======
-    <h3 class="heading-sidebar">Categories</h3>
-    <ul class="categories">
-        <li>
-            <a href="{% url 'category_post_list' %}" class="{% if not selected_category %}active{% endif %}">
-                All Categories
-                <span>({{ all_categories }})</span>
-            </a>
-        </li>
-        {% for category in categories %}
-            <li>
-                <a href="{% url 'category_post_list_by_id' category.id %}" class="{% if category.id|stringformat:"s" == selected_category %}active{% endif %}">
-                    {{ category.name }}
-                    <span>({{ category.num_posts }})</span>
-                </a>
-            </li>
-        {% endfor %}
->>>>>>> d8cc98ec6a089ff7c656030e8cd2753b5dae9fab
-    </ul>
-</div>
+
+   
+      
      
 
       
@@ -158,15 +143,15 @@
           <h3 class="heading-sidebar">Tag Cloud</h3>
           <div class="tagcloud">
             {% for tag in all_tags %}
-<<<<<<< HEAD
+
                                 <a href="{% url 'tag_post_list_by_id' tag.id %}" class="tag-cloud-link {% if tag.id|stringformat:"s" == selected_tag %}active{% endif %}">
                                     {{ tag.name }}
                                 </a>
                             {% endfor %}
-=======
+
               <a href="#" class="tag-cloud-link">{{ tag.name }}</a>
-            {% endfor %}
->>>>>>> d8cc98ec6a089ff7c656030e8cd2753b5dae9fab
+          
+
           </div>
         </div>
 
@@ -182,15 +167,13 @@
       </div>
     </div>
   </div>
-<<<<<<< HEAD
+
 </section> 
-    
+
+{% endblock %}
+  <!-- loader -->
+ 
+
 
   <!-- loader -->
-  {% endblock %}
-=======
-</section> <!-- .section -->
-
-  <!-- loader -->
-  {% endblock %}
->>>>>>> d8cc98ec6a089ff7c656030e8cd2753b5dae9fab
+  
