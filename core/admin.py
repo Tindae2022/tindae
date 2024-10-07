@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import Category, Comment, Tag, Post, Message
+from tinymce.widgets import TinyMCE
+from tinymce import models as tinymce_models
 
 
 # Register your models here.
@@ -18,9 +20,13 @@ class TagAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    pass
+    formfield_overrides = {
+        tinymce_models.HTMLField: {'widget': TinyMCE(attrs={'width': '100%', 'height': 400})},
+    }
+
+
+admin.site.register(Post, PostAdmin)
 
 
 @admin.register(Message)
