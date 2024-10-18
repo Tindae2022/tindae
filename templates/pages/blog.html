@@ -1,0 +1,175 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block hero %}
+{% endblock %}
+{% block content %}
+
+{% block about %}
+    {% endblock %}
+    {% block services %}
+        {% endblock %}
+    {% block skills %}
+        {% endblock %}
+		{% block projects %}
+    {% endblock %}
+    
+    {% block blog %}
+   <section class="ftco-section" id="blog-section">
+    <div class="container">
+       <div class="row justify-content-center mb-5 pb-5">
+    <div class="col-md-7 heading-section text-center ftco-animate">
+        <h1 class="big big-2">Blog</h1>
+        <h2 class="mb-4">My Blog</h2>
+        <p>Dive into the world of technology, gain insights from life coaches, and fuel your motivation with inspirational content, all crafted to empower and elevate your journey.</p>
+        <a href="{% url 'all_post' %}" class="btn btn-primary mt-4">View All Posts</a>
+    </div>
+</div>
+
+
+        {% if recent_posts %}
+
+        <div class="row d-flex">
+            {% for post in recent_posts %}
+            <div class="col-md-4 d-flex ftco-animate">
+                <div class="blog-entry justify-content-end">
+                    <a href="{% url 'post_details' post.pk %} " class="block-20" 
+   {% if post.image %}
+   style="background-image: url({{ post.image.url }});"
+   {% endif %}>
+</a>
+                    
+                    <div class="text mt-3 float-right d-block">
+                        <div class="d-flex align-items-center mb-3 meta">
+                            <p class="mb-0">
+                                <span class="mr-2">{{ post.publish|date:"F j, Y" }}</span>
+                                <a href="#" class="mr-2">{{ post.author }}</a>
+                                <a href="#" class="meta-chat"><span class="icon-chat"></span> {{ post.comments.count }}</a>
+                            </p>
+                        </div>
+                        <h3 class="heading"><a href="{% url 'post_details' post.pk %}">{{ post.title }}</a></h3>
+                        <p>{{ post.insight }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% else %}
+        <p>No posts found!</p>
+        {% endif %}
+
+    </div>
+</section> 
+
+
+    <section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
+    	<div class="container">
+				<div class="row d-md-flex align-items-center">
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number" data-number="{{ total_post }}">0</strong>
+                <span>Post</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number" data-number="{{ total_comment }}">0</strong>
+                <span>Comments</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+
+                <strong class="number" data-number="7">0</strong>
+                <span>Total Projects</span>
+
+        
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number" data-number="500">0</strong>
+                <span>Cups of coffee</span>
+              </div>
+            </div>
+          </div>
+		  <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+				<strong class="number" data-number="1200">0</strong>
+				<span>Happy Customers</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+	
+      </div>
+    </section>
+    {% endblock %}
+
+
+    
+{% endblock %}
+
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
